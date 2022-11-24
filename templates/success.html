@@ -24,7 +24,7 @@
         </style>
     </head>
     <body>
-        <div class = "second-main" style = "height: 100% , width : 100%;">
+        <div class = "second-main" style = "width : 100%;">
             <nav>
                 <ul style = "padding-right: 2%;" class = "main-nav">
                     <li><a href ="/">HomePage</a></li>                
@@ -36,11 +36,11 @@
                     <h3 class="header-text">Uploaded Image</h3>
                 </row>
                 <row style = "width: 100% ; display: flex; justify-content: center;">
-                    <img class = "result-img" src={{url_for('static', filename = 'images/'+ img)}}>
+                    <img class = "result-img" style="object-fit: contain;" src={{url_for('static', filename = 'images/'+ img)}}>
                 </row>
             </div>
 
-            <div class = "info">
+            <div class = "info" style="overflow-x: auto;">
             
                 <row style = "width: 100% ; display: flex; justify-content: center;">
                     <h3 class = "header-text">Model Prediction</h3>
@@ -51,11 +51,13 @@
                             <!-- <th>Rank</th> -->
                             <th>Body of the Damage</th>
                             <th>Level of the Damage</th>
+                            <th>Cost Estimated</th>
                         </tr>
                         <tr>
                             <!-- <td>1st</td> -->
                             <td>{{ predictions.body }}</td>
                             <td>{{ predictions.level }}</td>
+                            <td>{{ predictions.cost }}</td>
                           </tr>
                           <!-- <tr>
                             <td>2nd</td>

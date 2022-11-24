@@ -35,10 +35,10 @@ def predict(filename , model, dict_result):
 
 
     # for i in range(3):
-    #     dict_result1[result1[0][i]] = classes1[i]
-    #     dict_result2[result2[0][i]] = classes2[i]
+    #     dict_result1[body_result[0][i]] = classes1[i]
+    #     dict_result2[level_result[0][i]] = classes2[i]
 
-    # res = result1[0]
+    # res = body_result[0]
     # res.sort()
     # res = res[::-1]
     # prob = res[:3]
@@ -80,9 +80,31 @@ def success():
                 body_result = predict(img_path , model1, dict_result1)
                 level_result = predict(img_path , model2, dict_result2)
 
+                if(body_result == "Front" and level_result == "Minor"):
+                    value = "3000 - 5000 INR"
+                elif(body_result == "Front" and level_result == "Moderate"):
+                    value = "6000 - 8000 INR"
+                elif(body_result == "Front" and level_result == "Severe"):
+                    value = "9000 - 11000 INR"
+                elif(body_result == "Rear" and level_result == "Minor"):
+                    value = "4000 - 6000 INR"
+                elif(body_result == "Rear" and level_result == "Moderate"):
+                    value = "7000 - 9000 INR"
+                elif(body_result == "Rear" and level_result == "Severe"):
+                    value = "11000 - 13000 INR"
+                elif(body_result == "Side" and level_result == "Minor"):
+                    value = "6000 - 8000 INR"
+                elif(body_result == "Side" and level_result == "Moderate"):
+                    value = "9000 - 11000 INR"
+                elif(body_result == "Side" and level_result == "Side"):
+                    value = "12000 - 15000 INR"
+                else:
+                    value = "16000 - 30000 INR"
+                
                 predictions = {
                       "body":body_result,
-                        "level":level_result
+                        "level":level_result,
+                        "cost":value
                 }
 
             except Exception as e : 
@@ -92,6 +114,7 @@ def success():
             if(len(error) == 0):
                 return  render_template('success.html' , img  = img , predictions = predictions)
             else:
+                app.route('')
                 return render_template('index.html' , error = error) 
 
             
@@ -105,9 +128,32 @@ def success():
                 body_result = predict(img_path , model1, dict_result1)
                 level_result = predict(img_path , model2, dict_result2)
 
+                if(body_result == "Front" and level_result == "Minor"):
+                    value = "3000 - 5000 INR"
+                elif(body_result == "Front" and level_result == "Moderate"):
+                    value = "6000 - 8000 INR"
+                elif(body_result == "Front" and level_result == "Severe"):
+                    value = "9000 - 11000 INR"
+                elif(body_result == "Rear" and level_result == "Minor"):
+                    value = "4000 - 6000 INR"
+                elif(body_result == "Rear" and level_result == "Moderate"):
+                    value = "7000 - 9000 INR"
+                elif(body_result == "Rear" and level_result == "Severe"):
+                    value = "11000 - 13000 INR"
+                elif(body_result == "Side" and level_result == "Minor"):
+                    value = "6000 - 8000 INR"
+                elif(body_result == "Side" and level_result == "Moderate"):
+                    value = "9000 - 11000 INR"
+                elif(body_result == "Side" and level_result == "Side"):
+                    value = "12000 - 15000 INR"
+                else:
+                    value = "16000 - 30000 INR"
+
+
                 predictions = {
                       "body":body_result,
-                        "level":level_result
+                        "level":level_result,
+                        "cost":value
                 }
 
             else:
@@ -116,6 +162,7 @@ def success():
             if(len(error) == 0):
                 return  render_template('success.html' , img  = img , predictions = predictions)
             else:
+                app.route('')
                 return render_template('index.html' , error = error)
 
     else:
